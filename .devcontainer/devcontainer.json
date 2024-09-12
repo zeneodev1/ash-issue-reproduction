@@ -1,0 +1,59 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.231.6/containers/elixir-phoenix-postgres
+{
+	"name": "Reproduction",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "elixir",
+	"workspaceFolder": "/workspace",
+	"customizations": {
+		"vscode": {
+			// Set *default* container specific settings.json values on container create.
+			"settings": {
+				"sqltools.connections": [
+					{
+						"name": "Container database",
+						"driver": "PostgreSQL",
+						"previewLimit": 50,
+						"server": "localhost",
+						"port": 5432,
+						"database": "postgres",
+						"username": "postgres",
+						"passwomix help archive.installrd": "postgres"
+					}
+				],
+				"editor.formatOnPaste": true,
+				"editor.formatOnSave": true,
+				"elixirLS.suggestSpecs": false,
+				"elixirLS.dialyzerEnabled": true,
+				"elixirLS.signatureAfterComplete": false,
+				"elixirLS.fetchDeps": false,
+				"emmet.includeLanguages": {
+					"phoenix-heex": "html"
+				}
+			},
+			// Add the IDs of extensions you want installed when the container is created.
+			"extensions": [
+				"jakebecker.elixir-ls",
+				"mtxr.sqltools",
+				"mtxr.sqltools-driver-pg",
+				"phoenixframework.phoenix",
+				"bradlc.vscode-tailwindcss",
+				"GitHub.vscode-pull-request-github",
+				"mrorz.language-gettext",
+				"adrianwilczynski.alpine-js-intellisense"
+			]
+		}
+	},
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// This can be used to network with other containers or with the host.
+	"forwardPorts": [
+		4000,
+		4001,
+		5432
+	],
+	// Use 'postCreateCommand' to run commands after the container is created.
+	// "postCreateCommand": "mix deps.get"
+	"postCreateCommand": "sudo chown -R $USER:$USER $(pwd)"
+	// Uncomment to connect as a non-root user. See https://aka.ms/vscode-remote/containers/non-root.
+	// "remoteUser": "vscode"
+}
